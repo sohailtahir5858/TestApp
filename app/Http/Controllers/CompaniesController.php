@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CompanyMail;
 use App\Models\Companies;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CompaniesController extends Controller
 {
@@ -65,8 +67,12 @@ class CompaniesController extends Controller
         // saving data to the database
         $company->save();
 
+
         // returning response based on success or failure
         if ($company) {
+            // Sending Mail to User Once Company has been created
+            Mail::to($request->email)->send(new CompanyMail());
+
             return redirect()->route('companies.index')->with(['message' => 'Company Created Successful', 'type' => 'success']);
         } else {
             return redirect()->back()->with(['message' => 'Company Creation Failed', 'type' => 'warning']);

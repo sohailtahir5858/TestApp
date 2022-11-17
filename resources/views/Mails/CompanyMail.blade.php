@@ -1,0 +1,1 @@
+Congratulation! New Company has been registered
