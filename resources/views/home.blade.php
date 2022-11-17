@@ -6,13 +6,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Dashboard</h1>
+                    <h1 class="m-0">{{ __('words.Dashboard') }}</h1>
                 </div><!-- /.col -->
                 
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active">{{ __('words.Dashboard') }}</li>
                     </ol>
                 </div>
             </div>
@@ -26,7 +26,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">{{ __('Dashboard') }}</div>
+                        <div class="card-header">{{ __('words.Dashboard') }}</div>
 
                         <div class="card-body">
                             @if (session('status'))
@@ -35,13 +35,13 @@
                                 </div>
                             @endif
 
-                            {{ __('You are logged in!') }}
+                            {{ __('words.login') }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /.container-fluid -->
+        
     </section>
     <!-- /.content -->
 @endsection

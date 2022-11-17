@@ -24,7 +24,7 @@
                     <a href="{{ route('companies.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-globe"></i>
                         <p>
-                            Companies
+                            {{ __('words.Companies') }}
                         </p>
                     </a>
                 </li>
@@ -34,7 +34,7 @@
                     <a href="{{ route('employees.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
-                            Employees
+                            {{ __('words.Employees') }}
                         </p>
                     </a>
                 </li>

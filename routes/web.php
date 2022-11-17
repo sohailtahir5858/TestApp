@@ -35,3 +35,7 @@ Route::middleware('auth')->group( function () {
 
 // Route for home/Dashboard. it uses middleware in its constructor.
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// Route for switching btw different languages defined in config.languages.php
+Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);

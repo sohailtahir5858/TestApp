@@ -6,11 +6,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Companies</h1>
+                    <h1 class="m-0">{{ __('words.Companies') }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('companies.index') }}">Companies</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('companies.index') }}">{{ __('words.Companies') }}</a></li>
                         <li class="breadcrumb-item active">Home</li>
                     </ol>
                 </div><!-- /.col -->
@@ -47,7 +47,7 @@
                             @method('PUT')
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="name">Name</label>
+                                    <label for="name">{{ __('words.Name') }}</label>
                                     <input type="text" class="form-control" id="name" name="name"
                                         placeholder="Company Name" required value="{{ $company['name'] }}">
                                     @error('name')
@@ -55,7 +55,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label for="email">{{ __('words.Email') }}</label>
                                     <input type="email" class="form-control" id="email" name="email"
                                         placeholder="Company Email" value="{{ $company['email'] }}">
                                     @error('email')
@@ -63,7 +63,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="website">Website</label>
+                                    <label for="website">{{ __('words.Website') }}</label>
                                     <input type="text" class="form-control" id="website" name="website"
                                         placeholder="Company Website" value="{{ $company['website'] }}">
                                     @error('website')
@@ -72,7 +72,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="logo">Logo</label>
+                                    <label for="logo">{{ __('words.Logo') }}</label>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" class="form-control" id="logo" name="logo"
@@ -86,8 +86,8 @@
                             </div>
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Update</button>
-                                <a href="{{ route('companies.index') }}" class="btn btn-warning">Cancel</a>
+                                <button type="submit" class="btn btn-primary">{{ __('words.Update') }}</button>
+                                <a href="{{ route('companies.index') }}" class="btn btn-warning">{{ __('words.Cancel') }}</a>
                             </div>
                         </form>
                     </div>

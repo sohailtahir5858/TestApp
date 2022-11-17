@@ -6,11 +6,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Companies</h1>
+                    <h1 class="m-0">{{ __('words.Companies') }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('companies.index') }}">Companies</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('companies.index') }}">{{ __('words.Companies') }}</a></li>
                         <li class="breadcrumb-item active">Home</li>
                     </ol>
                 </div><!-- /.col -->
@@ -36,8 +36,7 @@
                     <div class="card">
                         <div class="card-header">
                             {{-- <h3 class="card-title">List of Companies</h3> --}}
-                            <a href="{{ route('companies.create') }}" class="btn btn-success float-end">Add
-                                Company</a>
+                            <a href="{{ route('companies.create') }}" class="btn btn-success float-end">{{ __('words.Add Company') }}</a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -45,11 +44,11 @@
                                 <thead>
                                     <tr>
                                         <th>id</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Website</th>
-                                        <th>Logo</th>
-                                        <th>Action</th>
+                                        <th>{{ __('words.Name') }}</th>
+                                        <th>{{ __('words.Email') }}</th>
+                                        <th>{{ __('words.Website') }}</th>
+                                        <th>{{ __('words.Logo') }}</th>
+                                        <th>{{ __('words.Action') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

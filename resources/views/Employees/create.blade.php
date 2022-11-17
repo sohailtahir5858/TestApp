@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Employees</h1>
+                    <h1 class="m-0">{{ __('words.Employees') }}</h1>
                 </div><!-- /.col -->
 
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('employees.index') }}">Employees</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('employees.index') }}">{{ __('words.Employees') }}</a></li>
                         <li class="breadcrumb-item active">Add</li>
                     </ol>
                 </div>
@@ -38,7 +38,7 @@
                     @endif
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Add New Employee</h3>
+                            <h3 class="card-title">{{ __('words.Add New Employee') }}</h3>
                         </div>
 
                         <!-- form start -->
@@ -48,7 +48,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="firstName">First Name</label>
+                                            <label for="firstName">{{ __('words.firstName') }}</label>
                                             <input type="text" class="form-control" id="firstName" name="firstName"
                                                 placeholder="First Name" required>
                                             @error('firstName')
@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="lastName">Last Name</label>
+                                            <label for="lastName">{{ __('words.lastName') }}</label>
                                             <input type="text" class="form-control" id="lastName" name="lastName"
                                                 placeholder="Last Name" required>
                                             @error('lastName')
@@ -72,7 +72,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="email">Email</label>
+                                            <label for="email">{{ __('words.Email') }}</label>
                                             <input type="email" class="form-control" id="email" name="email"
                                                 placeholder="Email">
                                             @error('email')
@@ -82,7 +82,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="phone">Phone</label>
+                                            <label for="phone">{{ __('words.Phone') }}</label>
                                             <input type="text" class="form-control" id="phone" name="phone"
                                                 placeholder="Phone">
                                             @error('phone')
@@ -92,9 +92,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="company">Company</label>
+                                    <label for="company">{{ __('words.Company') }}</label>
                                     <select class="form-control" id="company" name="company" required>
-                                        <option value="">Select Company</option>
+                                        <option value="">{{ __('words.Select Company') }}</option>
 
                                         @foreach ($companies as $company)
                                             <option value="{{ $company->id }}">{{ $company->name }}</option>
@@ -109,8 +109,8 @@
                             </div>
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Create</button>
-                                <a href="{{ route('employees.index') }}" class="btn btn-warning">Cancel</a>
+                                <button type="submit" class="btn btn-primary">{{ __('words.Create') }}</button>
+                                <a href="{{ route('employees.index') }}" class="btn btn-warning">{{ __('words.Cancel') }}</a>
                             </div>
                         </form>
                     </div>

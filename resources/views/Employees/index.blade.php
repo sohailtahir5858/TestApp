@@ -6,11 +6,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Employees</h1>
+                    <h1 class="m-0">{{ __('words.Employees') }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('employees.index') }}">Employees</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('employees.index') }}">{{ __('words.Employees') }}</a></li>
                         <li class="breadcrumb-item active">Home</li>
                     </ol>
                 </div><!-- /.col -->
@@ -35,8 +35,7 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('employees.create') }}" class="btn btn-success float-end">Add
-                                Employee</a>
+                            <a href="{{ route('employees.create') }}" class="btn btn-success float-end">{{ __('words.Add Employee') }}</a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -44,12 +43,12 @@
                                 <thead>
                                     <tr>
                                         <th>id</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Company</th>
-                                        <th>Action</th>
+                                        <th>{{ __('words.Employees') }}</th>
+                                        <th>{{ __('words.Employees') }}</th>
+                                        <th>{{ __('words.Email') }}</th>
+                                        <th>{{ __('words.Phone') }}</th>
+                                        <th>{{ __('words.Company') }}</th>
+                                        <th>{{ __('words.Action') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
