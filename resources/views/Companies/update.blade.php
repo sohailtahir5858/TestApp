@@ -75,7 +75,7 @@
                             </div>
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                                 <a href="{{ route('companies.index') }}" class="btn btn-warning">Cancel</a>
                             </div>
                         </form>

@@ -18,12 +18,11 @@
                             alt="User Image"> --}}
                     </div>
                     <div class="info">
-                        {{-- <a href="#" class="d-block"></a> --}}
                     </div>
                 </div>
                 <li class="nav-item">
                     <a href="{{ route('companies.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-globe"></i>
                         <p>
                             Companies
                         </p>
@@ -32,8 +31,8 @@
 
 
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
+                    <a href="{{ route('employees.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
                         <p>
                             Employees
                         </p>

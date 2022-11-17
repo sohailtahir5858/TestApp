@@ -9,12 +9,19 @@ class Employees extends Model
 {
     use HasFactory;
     // fillable for mass assignment.
-    protected $fillable = ['company','firstName','lastName','email','phone'];
+    protected $fillable = [
+        'company',
+        'firstName',
+        'lastName',
+        'email',
+        'phone'
+    ];
 
 
     // an Employee Belong to one company.
     public function companies()
     {
-        return $this->belongsTo(Companies::class);
+        // Making one to Many relationship with company & also specifying the column name
+        return $this->belongsTo(Companies::class,'company');
     }
 }

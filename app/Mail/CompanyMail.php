@@ -31,7 +31,7 @@ class CompanyMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Company Created!'
+            subject: 'Your Company Has been Added!'
         );
     }
 

@@ -9,10 +9,16 @@ class Companies extends Model
 {
     use HasFactory;
     // fillable for mass assignment.
-    protected $fillable = ['name','email','logo','website'];
+    protected $fillable = [
+        'name',
+        'email',
+        'logo',
+        'website'
+    ];
 
     // A company can have many employees.
     public function employees(){
-        return $this->hasMany(Employees::class);
+        // specifying Many to One relationship & also specifying the Foreign key column name
+        return $this->hasMany(Employees::class,'company');
     }
 }

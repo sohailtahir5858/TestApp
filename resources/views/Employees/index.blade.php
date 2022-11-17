@@ -6,11 +6,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Companies</h1>
+                    <h1 class="m-0">Employees</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('companies.index') }}">Companies</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('employees.index') }}">Employees</a></li>
                         <li class="breadcrumb-item active">Home</li>
                     </ol>
                 </div><!-- /.col -->
@@ -35,9 +35,8 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            {{-- <h3 class="card-title">List of Companies</h3> --}}
-                            <a href="{{ route('companies.create') }}" class="btn btn-success float-end">Add
-                                Company</a>
+                            <a href="{{ route('employees.create') }}" class="btn btn-success float-end">Add
+                                Employee</a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -45,38 +44,38 @@
                                 <thead>
                                     <tr>
                                         <th>id</th>
-                                        <th>Name</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
                                         <th>Email</th>
-                                        <th>Website</th>
-                                        <th>Logo</th>
+                                        <th>Phone</th>
+                                        <th>Company</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {{-- Forload to iterate through Employee Array --}}
-                                    @foreach ($companies as $company)
+                                    @foreach ($employees as $employee)
                                         <tr>
-                                            <td>{{ $company->id }}</td>
-                                            <td>{{ $company->name }}</td>
-                                            <td>{{ $company->email }}</td>
-                                            <td><a href="{{ $company->name }}" target="_blank">{{ $company->website }}</a>
+                                            <td>{{ $employee->id }}</td>
+                                            <td>{{ $employee->firstName }}</td>
+                                            <td>{{ $employee->lastName }}</td>
+                                            <td>{{ $employee->email }}</a>
+                                            <td>{{ $employee->phone }}</a>
+                                                <td>{{ $employee->companies->name }}</a>
                                             </td>
-                                            <td>
-                                                <img src="{{ asset('storage/logos/' . $company->logo) }}" alt="Logo"
-                                                    style="width:80px;height:80px">
-                                            </td>
+
                                             <td>
                                                 <div class="btn-group">
-                                                    <a href="{{ route('companies.edit', $company) }}"
+                                                    <a href="{{ route('employees.edit', $employee) }}"
                                                         class="btn btn-success btn-sm mr-1"><i class="fa fa-edit"></i></a>
 
-                                                    <form action="{{ route('companies.destroy', $company) }}"
+                                                    <form action="{{ route('employees.destroy', $employee) }}"
                                                         method="POST" onsubmit="return confirm('Are Your Sure?');">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger mr-1  btn-sm">
                                                             <i class="fas fa-trash-alt "
-                                                                title="Delete Company Information"></i>
+                                                                title="Delete Employee Information"></i>
                                                         </button>
                                                     </form>
                                                 </div>
@@ -86,15 +85,13 @@
                                 </tbody>
                             </table>
                             <div class="col-md-12">
-                                {!! $companies->links() !!}
+                                {!! $employees->links() !!}
                             </div>
 
                         </div>
                         <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
             <!-- /.row -->
         </div>

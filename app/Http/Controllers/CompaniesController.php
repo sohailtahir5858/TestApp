@@ -9,35 +9,24 @@ use Illuminate\Support\Facades\Mail;
 
 class CompaniesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
+        // Retrieving Companies records with pagination (10 records per page)
         $companies = Companies::orderBy('id', 'ASC')->paginate(10);
-        // dd($companies);
         return view('companies.index', compact('companies'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    
     public function create()
     {
         // returning view for creating new company
         return view('Companies.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
+    // Storing Company record to DB
     public function store(Request $request)
     {
         // Validating the request
@@ -70,8 +59,10 @@ class CompaniesController extends Controller
 
         // returning response based on success or failure
         if ($company) {
+
             // Sending Mail to User Once Company has been created
             Mail::to($request->email)->send(new CompanyMail());
+
 
             return redirect()->route('companies.index')->with(['message' => 'Company Created Successful', 'type' => 'success']);
         } else {
@@ -79,36 +70,22 @@ class CompaniesController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Companies  $companies
-     * @return \Illuminate\Http\Response
-     */
+    
+    
     public function show(Companies $companies)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Companies  $companies
-     * @return \Illuminate\Http\Response
-     */
+    
+    
     public function edit(Companies $company)
     {
-
         return view('Companies.update')->with(['company' => $company]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Companies  $companies
-     * @return \Illuminate\Http\Response
-     */
+    
+    // Method to update company record
     public function update(Request $request, Companies $company)
     {
         // Validating the request
@@ -139,12 +116,13 @@ class CompaniesController extends Controller
             $extension = $logo->extension();
             $rand = rand(11111, 99999);
             $tempName = $rand . '.' . $extension;
-            // Storing Logo public/logos/ directory
+            // Storing Logo public/logos/ directory with a temprary name
             $logo->storeAs('public/logos/', $tempName);
             $company->logo = $tempName;
         }
-
+        // Saving record to DB
         $company->save();
+
         // returning response based on success or failure
         if ($company) {
             return redirect()->route('companies.index')->with(['message' => 'Company Updated Successful', 'type' => 'success']);
@@ -153,12 +131,8 @@ class CompaniesController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Companies  $companies
-     * @return \Illuminate\Http\Response
-     */
+    
+    // Method to delete Company record along with associated Employees
     public function destroy(Companies $company)
     {
         if ($company) {
@@ -170,7 +144,13 @@ class CompaniesController extends Controller
                 }
             }
 
+            // Removing employees associated with this company
+            $company->employees()->delete();
+
+            // deleting company
             $company->delete();
+
+            // returning response based on success or failure
             return redirect()->back()->with(['message' => 'Company Information Deleted Successful', 'type' => 'success']);
         } else {
             return redirect()->back()->with(['message' => 'Company Information Not Found', 'type' => 'warning']);

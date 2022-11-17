@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // seeding user table with one row having and email and password
+        // seeding user table with one row having an email and password
         User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
