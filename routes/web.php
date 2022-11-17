@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Welcome Page
 Route::get('/', function () {
     return view('welcome');
 });
@@ -25,9 +26,12 @@ Auth::routes([
     'register' => false, // Routes of Registration
   ]);
 
+// Resource Controllers for Company and Employees,
+// which can only be accessed if user is authenticated.
 Route::middleware('auth')->group( function () {
   Route::resource('/companies', CompaniesController::class);
   Route::resource('/employees', EmployeesController::class);
 });
 
+// Route for home/Dashboard. it uses middleware in its constructor.
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

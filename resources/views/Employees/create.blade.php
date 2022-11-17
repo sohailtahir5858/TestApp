@@ -27,6 +27,15 @@
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-10 ">
+                    {{-- Showing if we have any message from the session! --}}
+                    @if (Session::has('message'))
+                        <div class="alert alert-{{ Session::get('type') }} alert-dismissible fade show" role="alert">
+                            {{ Session::get('message') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Add New Employee</h3>
