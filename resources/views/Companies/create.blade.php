@@ -23,61 +23,56 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
-                    <div class="card">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 ">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
                         <div class="card-header">
-                            {{-- <h3 class="card-title">List of Companies</h3> --}}
-                            <a href="{{ route('companies.create') }}" class="btn btn-success btn-sm float-end">Add
-                                Company</a>
+                            <h3 class="card-title">Add New Company</h3>
                         </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <table id="example" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Website</th>
-                                        <th>Logo</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Company</td>
-                                        <td>Company @123 .com
-                                        </td>
-                                        <td><a href="">companysite</a></td>
-                                        <td><img src="" alt="img not found" style=""></td>
-                                        <td>
-                                            <i class="fa fa-edit"></i>
-                                            <i class="fa fa-trash"></i>
-                                        </td>
-                                    </tr>
 
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.card-body -->
+                        <!-- form start -->
+                        <form method="POST" action="{{ route('companies.store') }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        placeholder="Company Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="Company Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="website">Website</label>
+                                    <input type="text" class="form-control" id="website" name="website"
+                                        placeholder="Company Website">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="logo">Logo</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="logo" name="logo">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose Logo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Create</button>
+                                <a href="{{ route('companies.index') }}" class="btn btn-warning">Cancel</a>
+                            </div>
+                        </form>
                     </div>
                     <!-- /.card -->
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
 @endsection
 
-{{-- section add add script and js --}}
-@section('script')
-    <script>
-        $("#example").DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-        });
-    </script>
-@endsection

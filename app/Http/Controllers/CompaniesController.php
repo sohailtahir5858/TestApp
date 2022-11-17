@@ -35,7 +35,30 @@ class CompaniesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'website' => 'required|string',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048|dimensions:min_width=100,min_height=100',
+        ]);
+        $company = new Companies();
+        $company->name = $request->name;
+        $company->email = $request->email;
+        $company->website = $request->website;
+        if ($request->hasFile('logo')) {
+            $logo = $request->file('logo');
+            $extension = $logo->extension();
+            $rand = rand(11111, 99999);
+            $tempName = $rand . ' ' . $extension;
+            $logo->storeAs('public/logos/', $tempName);
+            $company->logo = $tempName;
+        }
+        $company->save();
+        if ($company) {
+            return redirect()->route('companies.index')->with('message', 'Company Created Successful');
+        } else {
+            return redirect()->back()->with('message', 'Company Creation Failed!');
+        }
     }
 
     /**

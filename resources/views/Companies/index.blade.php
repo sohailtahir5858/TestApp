@@ -27,7 +27,7 @@
                     <div class="card">
                         <div class="card-header">
                             {{-- <h3 class="card-title">List of Companies</h3> --}}
-                            <a href="{{ route('companies.create') }}" class="btn btn-success btn-sm float-end">Add
+                            <a href="{{ route('companies.create') }}" class="btn btn-success float-end">Add
                                 Company</a>
                         </div>
                         <!-- /.card-header -->
