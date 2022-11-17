@@ -28,17 +28,18 @@
                 <div class="col-md-10 ">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Add New Company</h3>
+                            <h3 class="card-title">Update '{{ $company['name'] }}' Information</h3>
                         </div>
 
                         <!-- form start -->
-                        <form method="POST" action="{{ route('companies.store') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('companies.update',$company) }}" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Company Name" required>
+                                        placeholder="Company Name" required value="{{ $company['name'] }}">
                                         @error('name')
                                                     <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -46,7 +47,7 @@
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" id="email" name="email"
-                                        placeholder="Company Email">
+                                        placeholder="Company Email" value="{{ $company['email'] }}">
                                         @error('email')
                                                     <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -54,7 +55,7 @@
                                 <div class="form-group">
                                     <label for="website">Website</label>
                                     <input type="text" class="form-control" id="website" name="website"
-                                        placeholder="Company Website">
+                                        placeholder="Company Website" value="{{ $company['website'] }}">
                                         @error('website')
                                                     <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -67,6 +68,9 @@
                                             <input type="file" class="form-control" id="logo" name="logo" placeholder="Add Logo">
                                         </div>
                                     </div>
+                                    
+                                    <img src="{{ asset('storage/logos/' . $company['logo']) }}" alt="Logo"
+                                    style="width:200px" class="mt-2 ml-2">
                                 </div>
                             </div>
 

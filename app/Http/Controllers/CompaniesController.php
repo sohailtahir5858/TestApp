@@ -14,7 +14,9 @@ class CompaniesController extends Controller
      */
     public function index()
     {
-        return view('companies.index');
+        $companies = Companies::orderBy('id', 'ASC')->paginate(10);
+        // dd($companies);
+        return view('companies.index', compact('companies'));
     }
 
     /**
@@ -24,6 +26,7 @@ class CompaniesController extends Controller
      */
     public function create()
     {
+        // returning view for creating new company
         return view('Companies.create');
     }
 
@@ -35,29 +38,38 @@ class CompaniesController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        // Validating the request
+        $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email',
-            'website' => 'required|string',
-            'logo' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048|dimensions:min_width=100,min_height=100',
+            'email' => 'nullable|email',
+            'website' => 'nullable|string',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048|dimensions:min_width=100,min_height=100',
         ]);
+
+        // Creating object of company and adding fields
         $company = new Companies();
         $company->name = $request->name;
         $company->email = $request->email;
         $company->website = $request->website;
+
+        // making sure if logo exists in the request
         if ($request->hasFile('logo')) {
             $logo = $request->file('logo');
             $extension = $logo->extension();
             $rand = rand(11111, 99999);
-            $tempName = $rand . ' ' . $extension;
+            $tempName = $rand . '.' . $extension;
+            // Storing Logo public/logos/ directory
             $logo->storeAs('public/logos/', $tempName);
             $company->logo = $tempName;
         }
+        // saving data to the database
         $company->save();
+
+        // returning response based on success or failure
         if ($company) {
-            return redirect()->route('companies.index')->with('message', 'Company Created Successful');
+            return redirect()->route('companies.index')->with(['message' => 'Company Created Successful', 'type' => 'success']);
         } else {
-            return redirect()->back()->with('message', 'Company Creation Failed!');
+            return redirect()->back()->with(['message' => 'Company Creation Failed', 'type' => 'warning']);
         }
     }
 
@@ -78,9 +90,10 @@ class CompaniesController extends Controller
      * @param  \App\Models\Companies  $companies
      * @return \Illuminate\Http\Response
      */
-    public function edit(Companies $companies)
+    public function edit(Companies $company)
     {
-        //
+
+        return view('Companies.update')->with(['company' => $company]);
     }
 
     /**
@@ -90,9 +103,48 @@ class CompaniesController extends Controller
      * @param  \App\Models\Companies  $companies
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Companies $companies)
+    public function update(Request $request, Companies $company)
     {
-        //
+        // Validating the request
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'nullable|email',
+            'website' => 'nullable|string',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048|dimensions:min_width=100,min_height=100',
+        ]);
+
+        $company->name = $request->name;
+        $company->email = $request->email;
+        $company->website = $request->website;
+
+        // making sure if logo exists in the request
+        if ($request->hasFile('logo')) {
+
+            // Removing previous used logo if it exists on server
+            if ($company->logo) {
+                $oldLogo = 'storage/logos' . '/' . $company->logo;
+                if (file_exists($oldLogo)) {
+                    unlink($oldLogo);
+                }
+            }
+
+
+            $logo = $request->file('logo');
+            $extension = $logo->extension();
+            $rand = rand(11111, 99999);
+            $tempName = $rand . '.' . $extension;
+            // Storing Logo public/logos/ directory
+            $logo->storeAs('public/logos/', $tempName);
+            $company->logo = $tempName;
+        }
+
+        $company->save();
+        // returning response based on success or failure
+        if ($company) {
+            return redirect()->route('companies.index')->with(['message' => 'Company Updated Successful', 'type' => 'success']);
+        } else {
+            return redirect()->back()->with(['message' => 'Company Updation Failed', 'type' => 'warning']);
+        }
     }
 
     /**
@@ -101,8 +153,21 @@ class CompaniesController extends Controller
      * @param  \App\Models\Companies  $companies
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Companies $companies)
+    public function destroy(Companies $company)
     {
-        //
+        if ($company) {
+            // Removing previous used logo if it exists on server
+            if ($company->logo) {
+                $oldLogo = 'storage/logos' . '/' . $company->logo;
+                if (file_exists($oldLogo)) {
+                    unlink($oldLogo);
+                }
+            }
+
+            $company->delete();
+            return redirect()->back()->with(['message' => 'Company Information Deleted Successful', 'type' => 'success']);
+        } else {
+            return redirect()->back()->with(['message' => 'Company Information Not Found', 'type' => 'warning']);
+        }
     }
 }

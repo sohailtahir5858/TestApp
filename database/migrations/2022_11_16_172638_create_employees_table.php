@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('company');
             $table->string('firstName');
             $table->string('lastName');
-            $table->string('email');
-            $table->string('phone');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->foreign('company')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

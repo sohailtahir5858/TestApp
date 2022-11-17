@@ -87,8 +87,21 @@
     <script src="{{ asset('/adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 
-    
     @yield('script')
+
+
+    {{-- SCript to highlight current active navlink --}}
+    <script>
+        var url = window.location;
+        const allLinks = document.querySelectorAll('.nav-item a');
+        const currentLink = [...allLinks].filter(e => {
+            return e.href == url;
+        });
+
+        currentLink[0].classList.add("active")
+        currentLink[0].closest(".nav-treeview").style.display = "block";
+        currentLink[0].closest(".has-treeview").classList.add("active");
+    </script>
 </body>
 
 </html>
