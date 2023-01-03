@@ -43,8 +43,8 @@
                                 <thead>
                                     <tr>
                                         <th>id</th>
-                                        <th>{{ __('words.Employees') }}</th>
-                                        <th>{{ __('words.Employees') }}</th>
+                                        <th>{{ __('words.firstName') }}</th>
+                                        <th>{{ __('words.lastName') }}</th>
                                         <th>{{ __('words.Email') }}</th>
                                         <th>{{ __('words.Phone') }}</th>
                                         <th>{{ __('words.Company') }}</th>
